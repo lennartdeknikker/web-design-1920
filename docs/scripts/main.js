@@ -6,6 +6,7 @@ const introHeader = document.getElementById('intro-header')
 
 uploadInput.addEventListener('change', onFileChange, false)
 uploadButton.addEventListener('click', triggerFileBrowser)
+reopenButton.addEventListener('click', handleData)
 // reopenButton.addEventListener('click', showTableFor)
 
 function triggerFileBrowser() {
