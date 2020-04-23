@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <title>file upload test</title>
+  </head>
+  <style>
+    * {
+      font-family: "Roboto", sans-serif;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      width: 100vw;
+      background-color: antiquewhite;
+    }
+
+    button {
+      letter-spacing: 2px;
+      border: none;
+      outline: none;
+      background-color: rgb(52, 52, 129);
+      color: white;
+      font-weight: bold;
+      font-size: 2em;
+      width: 20rem;
+      height: 20rem;
+      border-radius: 100%;
+      box-shadow: 0 0 4px black;
+      cursor: pointer;
+      transition: background 1s ease;
+    }
+
+    h1 {
+      color: rgb(52, 52, 129);
+      font-size: 4rem;
+      letter-spacing: 2px;
+    }
+
+    .red {
+      color: red;
+    }
+
+    button:focus {
+      border: 5px solid yellow;
+    }
+
+    button:hover {
+      background-color: rgb(30, 30, 80);
+    }
+  </style>
+  <body>
+    <h1></h1>
+    <input type="file" class="file-upload hidden" />
+    <button id="upload-button">
+      KIES EEN EXCEL BESTAND
+    </button>
+
+    <script>
+      const button = document.querySelector("#upload-button")
+      const uploadButton = document.querySelector(".file-upload")
+      const text = document.querySelector("h1")
+
+      button.addEventListener("click", triggerUpload)
+
+      function triggerUpload() {
+        uploadButton.click()
+      }
+
+      uploadButton.addEventListener("change", onFileChange, false)
+
+      function onFileChange() {
+        if (!uploadButton.files[0].name.slice(-5).includes(".xls")) {
+          text.innerText = "Sorry, dat is geen excel-bestand."
+          text.classList.add("red")
+          button.innerText = "PROBEER OPNIEUW"
+          button.classList.remove("hidden")
+        } else {
+          button.classList.add("hidden")
+          text.classList.remove("red")
+          text.innerText = "Gelukt!"
+        }
+        text.classList.remove("hidden")
+        console.log(uploadButton.files[0].name)
+      }
+    </script>
+  </body>
+</html>

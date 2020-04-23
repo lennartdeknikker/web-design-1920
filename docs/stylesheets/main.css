@@ -1,8 +1,51 @@
 * {
-  color: white;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Roboto", sans-serif;
+}
+
+.hidden {
+  display: none;
 }
 
 body {
-  background-color: rgb(59, 59, 59);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  background-color: antiquewhite;
+}
+
+button {
+  letter-spacing: 2px;
+  border: none;
+  outline: none;
+  background-color: rgb(52, 52, 129);
+  color: white;
+  font-weight: bold;
+  font-size: 2em;
+  width: 20rem;
+  height: 20rem;
+  border-radius: 100%;
+  box-shadow: 0 0 4px black;
+  cursor: pointer;
+  transition: background 1s ease;
+}
+
+h1 {
+  color: rgb(52, 52, 129);
+  font-size: 4rem;
+  letter-spacing: 2px;
+}
+
+.red {
+  color: red;
+}
+
+button:focus {
+  border: 5px solid yellow;
+}
+
+button:hover {
+  background-color: rgb(30, 30, 80);
 }
