@@ -15,16 +15,27 @@
     ></script>
   </head>
   <body>
-    <h1></h1>
-    <input type="file" class="file-upload hidden" accept=".xls, .xlsx" />
-    <button id="upload-button">
-      KIES EEN EXCEL BESTAND
-    </button>
-
-    <div id="table-container"></div>
+    <section id="section-upload-file">
+      <h1 id="intro-header"></h1>
+      <input
+        type="file"
+        class="hidden"
+        id="input-upload"
+        accept=".xls, .xlsx"
+      />
+      <button class="hidden" id="button-reopen">
+        BEKIJK HET LAATSTE OPNIEUW
+      </button>
+      <button id="button-upload">
+        KIES EEN EXCEL BESTAND
+      </button>
+    </section>
+    <section id="section-pick-sheet" class="hidden">
+      <h1>Welke sheet wil je bekijken?</h1>
+      <div id="sheet-buttons-container"></div>
+    </section>
+    <section id="section-show-table" class="hidden"></section>
 
     <script src="scripts/main.js"></script>
-    <script src="scripts/convert-to-json.js"></script>
-    <script src="scripts/create-table.js"></script>
   </body>
 </html>
