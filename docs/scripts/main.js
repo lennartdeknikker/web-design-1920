@@ -58,19 +58,27 @@ function showTableFor(tableObject, target) {
   console.log(tableObject.data)
   
   const newTable = document.createElement('table')
-  const tableHead = createHead(tableObject.data)
+  const tableCaption = createCaption(tableObject.name)
+  const tableHead = createHead(tableObject.data[0])
   const tableBody = createBody(tableObject.data)
 
+  newTable.appendChild(tableCaption)
   newTable.appendChild(tableHead)
   newTable.appendChild(tableBody)
   targetElement.appendChild(newTable)
+}
+
+function createCaption(name) {
+  const newTableCaption = document.createElement('caption')
+  newTableCaption.innerText = name
+  return newTableCaption
 }
 
 function createHead(data) {
   const newTableHead = document.createElement('thead')
   const newTableHeadRow = document.createElement('tr')  
 
-  for (let element in data[0]){
+  for (let element in data){
     const newTableHeader = document.createElement('th')
     newTableHeader.innerText = element
     newTableHeadRow.appendChild(newTableHeader)
