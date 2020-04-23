@@ -21,7 +21,14 @@ function onFileChange() {
     button.classList.add("hidden")
     text.classList.remove("red")
     text.innerText = "Gelukt!"
+    manipulateExcelFile(uploadButton.files[0])
   }
   text.classList.remove("hidden")
-  console.log(uploadButton.files[0].name)
+  console.log('file changed to', uploadButton.files[0].name);
+  
+}
+
+function manipulateExcelFile(file) {
+  console.log(file);
+  
 }
