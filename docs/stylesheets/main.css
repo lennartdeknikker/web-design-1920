@@ -12,29 +12,77 @@ body {
   justify-content: center;
   align-items: center;
   width: 100vw;
+  background-color: rgb(54, 54, 134);
+  margin: 0;
+}
+
+.darken {
+  animation: darken 1s linear;
+}
+
+@keyframes darken {
+  from {
+    background-color: rgb(54, 54, 134);
+  }
+  50% {
+    background-color: black;
+  }
+  to {
+    background-color: rgb(54, 54, 134);
+  }
+}
+
+nav {
+  position: fixed;
+  top: 2rem;
+  left: 2rem;
+  display: flex;
+}
+
+.back-link {
+  padding: 1rem;
+  height: 100%;
+  width: 100%;
   background-color: antiquewhite;
+  border-radius: 100%;
+  transition: background 0.2s ease;
+  box-shadow: 0 0 4px black;
+}
+
+.back-button-icon {
+  height: 3rem;
+  width: 3rem;
+  fill: rgb(54, 54, 134);
+}
+
+.buttons-container {
+  display: flex;
+}
+
+.button-file:first-of-type {
+  margin-right: 1em;
+}
+
+h1 {
+  color: white;
+  font-size: 3rem;
+  letter-spacing: 2px;
 }
 
 button {
   letter-spacing: 2px;
   border: none;
   outline: none;
-  background-color: rgb(52, 52, 129);
-  color: white;
+  background-color: antiquewhite;
+  color: rgb(52, 52, 129);
   font-weight: bold;
-  font-size: 2em;
+  font-size: 1.5em;
   width: 20rem;
-  height: 20rem;
+  height: 15rem;
   border-radius: 100%;
   box-shadow: 0 0 4px black;
   cursor: pointer;
-  transition: background 1s ease;
-}
-
-h1 {
-  color: rgb(52, 52, 129);
-  font-size: 4rem;
-  letter-spacing: 2px;
+  transition: background 0.2s ease;
 }
 
 .red {
@@ -45,6 +93,37 @@ button:focus {
   border: 5px solid yellow;
 }
 
-button:hover {
-  background-color: rgb(30, 30, 80);
+button:hover,
+.back-link:hover {
+  background-color: rgb(255, 218, 170);
+}
+
+table {
+  color: antiquewhite;
+  width: 90vw;
+  background-color: antiquewhite;
+  margin-block-end: 2rem;
+}
+
+caption {
+  font-size: 1.5rem;
+  margin-block-end: 1rem;
+}
+
+thead {
+  font-size: 1.2rem;
+  color: rgb(52, 52, 129);
+}
+
+th {
+  margin: 0;
+  border: 2px solid rgb(52, 52, 129);
+}
+
+tbody {
+  background-color: rgb(52, 52, 129);
+}
+
+tbody td {
+  padding: 0.5rem;
 }

@@ -11,6 +11,8 @@ reopenButton.addEventListener('click', handleData)
 
 function triggerFileBrowser() {
   uploadInput.click()
+  const body = document.querySelector('body')
+  body.classList.add('darken')
 }
 
 async function onFileChange() {
@@ -31,6 +33,8 @@ function changeVisibleSectionTo(id) {
 }
 
 function handleData() {
+  const body = document.querySelector('body')
+  body.classList.add('darken')
   const storageData = localStorage.getItem('table-data')  
   const parsedData = JSON.parse(storageData)
 
@@ -46,7 +50,8 @@ function addButtonsForEachSheet(parsedData) {
   const buttonsContainer = document.getElementById('sheet-buttons-container')
   for (let table in parsedData) {
     const newButton = document.createElement('button')
-    newButton.innerText = parsedData[table].name
+    newButton.classList.add('button-file')
+    newButton.innerText = parsedData[table].name.toUpperCase()
     newButton.addEventListener('click', () => showTableFor(parsedData[table], 'section-show-table'))
     buttonsContainer.appendChild(newButton)
   }
@@ -93,8 +98,12 @@ function createBody(data) {
   for (let item in data) {
     const newRow = document.createElement('tr')
     for (let property in data[item]) {
+      let text = data[item][property]
+      if (typeof text === 'number') {
+        text = Math.round(text * 100) / 100
+      }
       const newCell = document.createElement('td')
-      newCell.innerText = data[item][property]
+      newCell.innerText = text
       newRow.appendChild(newCell)
     }
     newTableBody.appendChild(newRow)
@@ -132,6 +141,5 @@ function processNewData(file) {
 // first check if there's already data in storage and ask the user if he wants to see the same data again or open another file.
 if (localStorage.getItem('table-data')) {
   console.log('data is already in storage')
-  introHeader.innerText = 'Wil je het bestand van laatst opnieuw bekijken of een nieuw bestand openen?'
   reopenButton.classList.remove('hidden')
 }
