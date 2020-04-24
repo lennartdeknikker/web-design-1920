@@ -3,6 +3,7 @@ const uploadButton = document.getElementById('button-upload')
 const reopenButton = document.getElementById('button-reopen')
 const uploadInput = document.getElementById('input-upload')
 const introHeader = document.getElementById('intro-header')
+const goBackButton = document.getElementById('button-go-back')
 
 uploadInput.addEventListener('change', onFileChange, false)
 uploadButton.addEventListener('click', triggerFileBrowser)
@@ -11,8 +12,7 @@ reopenButton.addEventListener('click', handleData)
 
 function triggerFileBrowser() {
   uploadInput.click()
-  const body = document.querySelector('body')
-  body.classList.add('darken')
+  animate()
 }
 
 async function onFileChange() {
@@ -32,9 +32,16 @@ function changeVisibleSectionTo(id) {
   })
 }
 
-function handleData() {
+function animate() {
   const body = document.querySelector('body')
+  if (body.classList.contains('darken')) body.classList.remove('darken')
+  void body.offsetWidth
   body.classList.add('darken')
+}
+
+function handleData() {
+  goBackButton.classList.remove('hidden')
+  animate()
   const storageData = localStorage.getItem('table-data')  
   const parsedData = JSON.parse(storageData)
 
@@ -52,7 +59,10 @@ function addButtonsForEachSheet(parsedData) {
     const newButton = document.createElement('button')
     newButton.classList.add('button-file')
     newButton.innerText = parsedData[table].name.toUpperCase()
-    newButton.addEventListener('click', () => showTableFor(parsedData[table], 'section-show-table'))
+    newButton.addEventListener('click', () => {
+      animate()
+      showTableFor(parsedData[table], 'section-show-table')
+    })
     buttonsContainer.appendChild(newButton)
   }
 }
