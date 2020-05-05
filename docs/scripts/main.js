@@ -1,3 +1,4 @@
+const synth = window.speechSynthesis
 
 const uploadButton = document.getElementById('button-upload')
 const reopenButton = document.getElementById('button-reopen')
@@ -14,6 +15,19 @@ reopenButton.addEventListener('click', handleData)
 tableSection.addEventListener('keypress', makeRowBigger)
 tableSection.addEventListener('keyup', makeRowSmaller)
 body.addEventListener('keydown', openTestDocument)
+
+function tts(text) {
+  const splitUpText = text.split('<p>')
+  console.log(splitUpText)
+  
+  synth.cancel()
+
+  for (let textItem of splitUpText) {
+    const utterance = new SpeechSynthesisUtterance(textItem)
+    synth.speak(utterance)
+  }
+
+}
 
 function triggerFileBrowser() {
   uploadInput.click()
@@ -133,6 +147,7 @@ function processNewData(file) {
 
   fileReader.onload = function(event) {
     const data = event.target.result
+    // eslint-disable-next-line no-undef
     const workbook = XLSX.read(data, {
       type: 'binary'
     })
@@ -141,6 +156,7 @@ function processNewData(file) {
       let table = {
         name: sheet
       }
+      // eslint-disable-next-line no-undef
       let rowObject = XLSX.utils.sheet_to_row_object_array(
         workbook.Sheets[sheet]
       )      
@@ -165,7 +181,7 @@ if (localStorage.getItem('table-data')) {
 
 function makeRowSmaller(event) {
   console.log(event.code)
-  if (event.code === 'Equal' || event.code === 'NumpadAdd' || event.code === 'Space') {
+  if (event.code === 'Equal' || event.code === 'NumpadAdd') {
     event.preventDefault()
     document.activeElement.classList.remove('bigger')
   }
@@ -175,9 +191,12 @@ function makeRowSmaller(event) {
 function makeRowBigger(event) {
   console.log(event.code)
   event.preventDefault()
-  if (event.code === 'Equal' || event.code === 'NumpadAdd' || event.code === 'Space') {
+  if (event.code === 'Equal' || event.code === 'NumpadAdd') {
     document.activeElement.classList.add('bigger')
-  }  
+  }
+  if (event.code === 'Space') {    
+    TtsRowContent(document.activeElement)
+  }
 }
 
 function openTestDocument() {
@@ -203,3 +222,17 @@ function openTestDocument() {
   
 }
 
+function TtsRowContent(rowElement) {
+  const headers = document.querySelectorAll('th')
+  const dataElements = rowElement.querySelectorAll('td')
+  console.log(dataElements)
+  
+  let totalText = ''
+
+  for (let i = 0; i < dataElements.length; i++) {
+    const string = headers[i].innerText + ' is ' + dataElements[i].innerText + '<p>'
+    totalText += string
+  }
+
+  tts(totalText)
+}
