@@ -4,11 +4,16 @@ const reopenButton = document.getElementById('button-reopen')
 const uploadInput = document.getElementById('input-upload')
 const introHeader = document.getElementById('intro-header')
 const goBackButton = document.getElementById('button-go-back')
+const tableSection = document.getElementById('section-show-table')
+const body = document.querySelector('body')
 
 uploadInput.addEventListener('change', onFileChange, false)
 uploadButton.addEventListener('click', triggerFileBrowser)
 reopenButton.addEventListener('click', handleData)
 // reopenButton.addEventListener('click', showTableFor)
+tableSection.addEventListener('keypress', makeRowBigger)
+tableSection.addEventListener('keyup', makeRowSmaller)
+body.addEventListener('keydown', openTestDocument)
 
 function triggerFileBrowser() {
   uploadInput.click()
@@ -55,6 +60,7 @@ function handleData() {
 
 function addButtonsForEachSheet(parsedData) {
   const buttonsContainer = document.getElementById('sheet-buttons-container')
+  buttonsContainer.innerHTML = ''
   for (let table in parsedData) {
     const newButton = document.createElement('button')
     newButton.classList.add('button-file')
@@ -70,7 +76,6 @@ function addButtonsForEachSheet(parsedData) {
 function showTableFor(tableObject, target) {
   changeVisibleSectionTo('section-show-table')
   const targetElement = document.getElementById(target)
-  console.log(tableObject.data)
   
   const newTable = document.createElement('table')
   const tableCaption = createCaption(tableObject.name)
@@ -107,6 +112,7 @@ function createBody(data) {
   const newTableBody = document.createElement('tbody')
   for (let item in data) {
     const newRow = document.createElement('tr')
+    newRow.tabIndex = 0
     for (let property in data[item]) {
       let text = data[item][property]
       if (typeof text === 'number') {
@@ -141,7 +147,9 @@ function processNewData(file) {
 
       table.data = rowObject
       tables.push(table)
-    })    
+    })  
+    console.log(tables)
+    
     localStorage.setItem('table-data', JSON.stringify(tables))
     handleData()
   }
@@ -153,3 +161,45 @@ if (localStorage.getItem('table-data')) {
   console.log('data is already in storage')
   reopenButton.classList.remove('hidden')
 }
+
+
+function makeRowSmaller(event) {
+  console.log(event.code)
+  if (event.code === 'Equal' || event.code === 'NumpadAdd' || event.code === 'Space') {
+    event.preventDefault()
+    document.activeElement.classList.remove('bigger')
+  }
+  if (event.code === 'Tab') document.activeElement.scrollIntoView({block: 'center', behavior: 'smooth'})
+}
+
+function makeRowBigger(event) {
+  console.log(event.code)
+  event.preventDefault()
+  if (event.code === 'Equal' || event.code === 'NumpadAdd' || event.code === 'Space') {
+    document.activeElement.classList.add('bigger')
+  }  
+}
+
+function openTestDocument() {
+  if (event.code === 'Enter') {
+    goBackButton.classList.remove('hidden')
+    animate()
+    // eslint-disable-next-line no-undef
+    const parsedData = sampleData
+  
+    if (parsedData.length > 1) {
+      changeVisibleSectionTo('section-pick-sheet')
+      addButtonsForEachSheet(parsedData)
+    } else {
+      showTableFor(parsedData[0], 'section-show-table')
+    }
+  } else if (event.code === 'Escape') {
+    event.preventDefault()
+    console.log('bs')
+    
+    window.location = goBackButton.href
+  }
+  console.log(event.code)
+  
+}
+

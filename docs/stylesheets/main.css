@@ -34,9 +34,10 @@ body {
 
 nav {
   position: fixed;
-  top: 2rem;
+  top: 3rem;
   left: 2rem;
   display: flex;
+  z-index: 3;
 }
 
 .back-link {
@@ -47,6 +48,7 @@ nav {
   border-radius: 100%;
   transition: background 0.2s ease;
   box-shadow: 0 0 4px black;
+  border: red 2px solid;
 }
 
 .back-button-icon {
@@ -59,8 +61,13 @@ nav {
   display: flex;
 }
 
-.button-file:first-of-type {
+.button-file {
   margin-right: 1em;
+  margin-bottom: 1em;
+}
+
+.button-file:last-of-type {
+  margin-right: 0;
 }
 
 h1 {
@@ -85,12 +92,42 @@ button {
   transition: background 0.2s ease;
 }
 
+#sheet-buttons-container {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
 .red {
   color: red;
 }
 
 button:focus {
-  border: 5px solid yellow;
+  border: 5px solid rgb(187, 0, 0);
+}
+
+tr:focus,
+th:focus {
+  box-sizing: border-box;
+  outline: 5px solid rgb(187, 0, 0);
+}
+
+tr:focus {
+  background-color: antiquewhite;
+  color: rgb(52, 52, 129);
+  font-weight: bold;
+}
+
+tr:focus td {
+  border-right: 2px solid rgb(52, 52, 129);
+}
+
+tr:focus td:last-of-type {
+  border-right: none;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 button:hover,
@@ -103,6 +140,9 @@ table {
   width: 90vw;
   background-color: antiquewhite;
   margin-block-end: 2rem;
+  border-collapse: collapse;
+  border: 2px solid antiquewhite;
+  table-layout: fixed;
 }
 
 caption {
@@ -117,7 +157,20 @@ thead {
 
 th {
   margin: 0;
-  border: 2px solid rgb(52, 52, 129);
+  border: 2px solid antiquewhite;
+  border-right: 2px solid rgb(52, 52, 129);
+  position: sticky;
+  position: -webkit-sticky;
+  top: -2px; /* required */
+  background-color: antiquewhite;
+}
+
+th:last-of-type {
+  border-right: 2px solid antiquewhite;
+}
+
+td {
+  border: 2px solid antiquewhite;
 }
 
 tbody {
@@ -126,4 +179,15 @@ tbody {
 
 tbody td {
   padding: 0.5rem;
+  height: 3em;
+  max-height: 3em;
+}
+
+.bigger {
+  font-size: 1.5em;
+}
+
+tr {
+  transition: font-size 0.5s linear;
+  height: 2em;
 }
