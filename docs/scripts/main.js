@@ -11,23 +11,10 @@ const body = document.querySelector('body')
 uploadInput.addEventListener('change', onFileChange, false)
 uploadButton.addEventListener('click', triggerFileBrowser)
 reopenButton.addEventListener('click', handleData)
-// reopenButton.addEventListener('click', showTableFor)
 tableSection.addEventListener('keypress', makeRowBigger)
 tableSection.addEventListener('keyup', makeRowSmaller)
-body.addEventListener('keydown', openTestDocument)
+body.addEventListener('keydown', onKeyPress)
 
-function tts(text) {
-  const splitUpText = text.split('<p>')
-  console.log(splitUpText)
-  
-  synth.cancel()
-
-  for (let textItem of splitUpText) {
-    const utterance = new SpeechSynthesisUtterance(textItem)
-    synth.speak(utterance)
-  }
-
-}
 
 function triggerFileBrowser() {
   uploadInput.click()
@@ -87,7 +74,43 @@ function addButtonsForEachSheet(parsedData) {
   }
 }
 
+// Function to process excel data, so it can be used.
+
+function processNewData(file) {
+  const fileReader = new FileReader()
+  fileReader.result = []
+
+  fileReader.onload = function(event) {
+    const data = event.target.result
+    // eslint-disable-next-line no-undef
+    const workbook = XLSX.read(data, {
+      type: 'binary'
+    })
+    let tables = []
+    workbook.SheetNames.forEach(sheet => {
+      let table = {
+        name: sheet
+      }
+      // eslint-disable-next-line no-undef
+      let rowObject = XLSX.utils.sheet_to_row_object_array(
+        workbook.Sheets[sheet]
+      )      
+
+      table.data = rowObject
+      tables.push(table)
+    })  
+    
+    localStorage.setItem('table-data', JSON.stringify(tables))
+    handleData()
+  }
+  fileReader.readAsBinaryString(file)
+}
+
+
+// functions to create a table
+
 function showTableFor(tableObject, target) {
+  tts('druk op i voor informatie')
   changeVisibleSectionTo('section-show-table')
   const targetElement = document.getElementById(target)
   
@@ -141,46 +164,11 @@ function createBody(data) {
   return newTableBody
 }
 
-function processNewData(file) {
-  const fileReader = new FileReader()
-  fileReader.result = []
 
-  fileReader.onload = function(event) {
-    const data = event.target.result
-    // eslint-disable-next-line no-undef
-    const workbook = XLSX.read(data, {
-      type: 'binary'
-    })
-    let tables = []
-    workbook.SheetNames.forEach(sheet => {
-      let table = {
-        name: sheet
-      }
-      // eslint-disable-next-line no-undef
-      let rowObject = XLSX.utils.sheet_to_row_object_array(
-        workbook.Sheets[sheet]
-      )      
 
-      table.data = rowObject
-      tables.push(table)
-    })  
-    console.log(tables)
-    
-    localStorage.setItem('table-data', JSON.stringify(tables))
-    handleData()
-  }
-  fileReader.readAsBinaryString(file)
-}
-
-// first check if there's already data in storage and ask the user if he wants to see the same data again or open another file.
-if (localStorage.getItem('table-data')) {
-  console.log('data is already in storage')
-  reopenButton.classList.remove('hidden')
-}
-
+// key actions
 
 function makeRowSmaller(event) {
-  console.log(event.code)
   if (event.code === 'Equal' || event.code === 'NumpadAdd') {
     event.preventDefault()
     document.activeElement.classList.remove('bigger')
@@ -189,17 +177,22 @@ function makeRowSmaller(event) {
 }
 
 function makeRowBigger(event) {
-  console.log(event.code)
   event.preventDefault()
   if (event.code === 'Equal' || event.code === 'NumpadAdd') {
     document.activeElement.classList.add('bigger')
   }
   if (event.code === 'Space') {    
-    TtsRowContent(document.activeElement)
+    ttsForRow(document.activeElement)
   }
 }
 
-function openTestDocument() {
+function onKeyPress() {
+  if (event.code === 'KeyI') {
+    tts(`Navigeer met tab door de tabel.<p>
+    Houd de plus-toets ingedrukt om een geselecteerde rij te vergroten.<p>
+    Druk op spatie om een rij voor te lezen.<p>
+    Druk op escape om een ander bestand te openen.`)
+  }
   if (event.code === 'Enter') {
     goBackButton.classList.remove('hidden')
     animate()
@@ -214,19 +207,15 @@ function openTestDocument() {
     }
   } else if (event.code === 'Escape') {
     event.preventDefault()
-    console.log('bs')
-    
-    window.location = goBackButton.href
+    goBackButton.click()
   }
-  console.log(event.code)
-  
 }
 
-function TtsRowContent(rowElement) {
+// TTS functions
+
+function ttsForRow(rowElement) {
   const headers = document.querySelectorAll('th')
-  const dataElements = rowElement.querySelectorAll('td')
-  console.log(dataElements)
-  
+  const dataElements = rowElement.querySelectorAll('td')  
   let totalText = ''
 
   for (let i = 0; i < dataElements.length; i++) {
@@ -235,4 +224,20 @@ function TtsRowContent(rowElement) {
   }
 
   tts(totalText)
+}
+
+function tts(text) {
+  const splitUpText = text.split('<p>')
+  synth.cancel()
+
+  for (let textItem of splitUpText) {
+    const utterance = new SpeechSynthesisUtterance(textItem)
+    synth.speak(utterance)
+  }
+
+}
+
+// first check if there's already data in storage and ask the user if he wants to see the same data again or open another file.
+if (localStorage.getItem('table-data')) {
+  reopenButton.classList.remove('hidden')
 }
