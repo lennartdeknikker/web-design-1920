@@ -189,7 +189,7 @@ function makeRowBigger(event) {
 function onKeyPress() {
   console.log(event.code)
 
-  if (event.code === 'KeyR') {
+  if (event.code === 'KeyS') {
     const allTds = document.querySelectorAll('td')
 
     for (let td of allTds) {
