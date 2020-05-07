@@ -3,12 +3,20 @@
 This repository contains the documentation and code for the prototype of an application to open and view excel-files in your browser. This application is exclusively designed for our test subject who suffers from Macula Degeneration(MD).
 By building this application, I'm hoping to make it easier for him to view data from excel files. 
 
-![screenshot](wiki-assets/screenshots/home.png)
-
 More information on `exclusive design`, our test subject, my research and the process of building this application can be found in the [wiki](https://github.com/lennartdeknikker/web-design-1920/wiki) for this repository.
 
+![screenshot](wiki-assets/screenshots/home.png)
+
+
 ## Contents
-1. [Installation](#installation)
+- [Web Design @cmda-minor-web 19/20](#web-design-cmda-minor-web-1920)
+  - [Contents](#contents)
+  - [Installation](#installation)
+  - [Features](#features)
+    - [Current features](#current-features)
+    - [Future features](#future-features)
+  - [Dependencies](#dependencies)
+  - [License](#license)
 
 ## Installation
 To work on this project:
@@ -57,3 +65,5 @@ To work on this project:
 - [XLSX](https://www.npmjs.com/package/xlsx) - to transform `.xls` and `.xlsx` files to `.json`.
 - [http-server](https://www.npmjs.com/package/http-server) - to serve the application in the browser during development
 
+## License
+This project is licensed under the terms of the MIT license.
