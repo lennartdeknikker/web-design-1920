@@ -52,3 +52,8 @@ To work on this project:
 * [ ] Recognize dates
 * [ ] Recognize financial data
 * [ ] Recognize trends in data and show simple graphs
+
+## Dependencies
+- [XLSX](https://www.npmjs.com/package/xlsx) - to transform `.xls` and `.xlsx` files to `.json`.
+- [http-server](https://www.npmjs.com/package/http-server) - to serve the application in the browser during development
+
