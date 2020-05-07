@@ -12,14 +12,17 @@ More information on `exclusive design`, our test subject, my research and the pr
 
 ## Installation
 To work on this project:
-1. navigate to your projects folder using your terminal.
+1. navigate to your projects folder using your terminal:
+   ```
+   cd <desired projects folder>
+   ```
 2. Clone the repository: 
    ```
    git clone https://github.com/lennartdeknikker/web-design-1920.git
    ```
-3. navigate into the cloned folder:
+3. navigate into the docs folder:
    ```
-   cd web-design-1920
+   cd web-design-1920/docs
    ```
 4. Install the necessary packages:
    ```
@@ -29,4 +32,23 @@ To work on this project:
    ```
    npm run dev
    ```
-6. Open the page in your browser: [localhost:3000](http://localhost:3000/)
+6. Open the application in your browser: [localhost:3000](http://localhost:3000/)
+
+## Features
+### Current features
+* [x] Load excel files into the browser.
+* [x] Open last viewed file
+* [x] Explicitely show page loads
+* [x] Show multiple sheets
+* [x] Tabbing through shown tables
+* [x] enlarge rows by pressing plus-key
+* [x] Read out instructions by pressing the I-key
+* [x] Read out rows by pressing the spacebar
+* [x] Go back to opening a new file by pressing the escape-key.
+* [x] sticky table headers
+* [x] auto-scroll to keep the selected row at the same spot when tabbing through tables
+
+### Future features
+* [ ] Recognize dates
+* [ ] Recognize financial data
+* [ ] Recognize trends in data and show simple graphs
