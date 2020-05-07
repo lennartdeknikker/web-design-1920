@@ -191,3 +191,15 @@ tr {
   transition: font-size 0.5s linear;
   height: 2em;
 }
+
+.unchiseled {
+  cursor: url("../assets/cursor.png") 0 30, auto;
+  background: url("../assets/stone.jpg");
+  border: none;
+}
+
+.chiseled {
+  cursor: default;
+  background: rgb(54, 54, 134);
+  border: none;
+}
