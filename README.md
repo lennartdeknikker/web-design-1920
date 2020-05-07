@@ -7,6 +7,8 @@ More information on `exclusive design`, our test subject, my research and the pr
 
 ![screenshot](wiki-assets/screenshots/home.png)
 
+[view the demo](https://lennartdeknikker.github.io/web-design-1920/index.html)
+
 
 ## Contents
 - [Web Design @cmda-minor-web 19/20](#web-design-cmda-minor-web-1920)
