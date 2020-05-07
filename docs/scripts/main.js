@@ -187,6 +187,8 @@ function makeRowBigger(event) {
 }
 
 function onKeyPress() {
+  console.log(event.code)
+
   if (event.code === 'KeyI') {
     tts(`Navigeer met tab door de tabel.<p>
     Houd de plus-toets ingedrukt om een geselecteerde rij te vergroten.<p>
