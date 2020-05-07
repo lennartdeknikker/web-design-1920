@@ -1,17 +1,30 @@
-# Roger Ravelli
-- woont in Amsterdam, Ijburg
-- heeft Hogere technische school gedaan, werktuigbouwkunde oid
-- Daarna bij de RVO, specialist duurzame energie geworden.
-- Heeft vroeger wel al veel met zijn handen ook gewerkt.
-- Heeft het beeldhouwen opgepakt. Hij is zelfs ooit bedrijfsleider bij een beeldende kunst ding geweest.
+# Over Roger Ravelli
 
-## Over hem
-### zijn werk
+Onze testpersoon heeft last van Macula Degeneratie(MD). Om onze ontwerpen volledig naar zijn wensen te kunnen maken, zijn we begonnen met een interview waarbij wij hem vragen hebben gesteld over zijn persoonlijke situatie, zijn oog-aandoening en de ongemakken die hij daarvan ondervindt met betrekking tot het bekijken van grafieken en tabellen. Zodoende hoopten wij tot passende oplossingen te kunnen komen.
+
+## Profielschets
+- Roger woont in Amsterdam, Ijburg
+- Hij heeft aan de Hogere technische werktuigbouwkunde gestudeerd.
+- Daarna is hij bij de RVO, specialist duurzame energie geworden.
+- Hij heeft vroeger wel al veel met zijn handen ook gewerkt.
+- Nu hij niet meer kan werken, heeft hij het beeldhouwen weer opgepakt. Hij had daar al enige ervaring in en is zelfs ooit manager bij een evenement voor beeldende kunst geweest.
+- Op zijn eigen website is [zijn werk](http://www.rogerravelli.com/) te bekijken.
+
+## Over zijn werk
+Tot voor enige tijd geleden was Roger werkzaam als specialist duurzame energie. Hij hield zich binnen die positie veelal bezig met warmte koude opslag. Hij heeft er voor gezorgd dat die oplossing in Nederland meer gerealiseerd werd.
+
+### Warmte koude opslag
+Op een duurzame manier kan je gebouwen verwarmen door water te pompen in een zandvoerende laag. Techniek met water, infiltreren in een watervoerende zandlaag. Daarmee ipv airco’s op een hele efficiente manier koelen en verwarmen van kantoren met water. 
+
+(Ook enkele HvA gebouwen maken hier gebruik van.)
+
+### Bron van data over warmte koude opslag
+
 De wko-atlas, warmte koude opslag:
 
 https://www.nationaleenergieatlas.nl/kaarten?config=418d0f56-0f0c-4fd4-9001-2ead4e1e22d6??config&gm-x=150000&gm-y=460000&gm-z=3&gm-b=1542632922900,true,1;1554039019221,true,0.8;
 
-Op een duurzame manier kan je gebouwen verwarmen door te pompen in een zandvoerende laag. Techniek met water, infiltreren in een watervoerende zandlaag. Daarmee ipv airco’s op een hele efficiente manier koelen en verwarmen van kantoren met water. Daar was hij specialist in. Heeft er voor gezorgd dat die oplossing meer gerealiseerd werd.
+
 
 ### Verloop oogklachten
 Ging eerst naar de opticien, werd daarna doorverwezen naar ziekenhuis.
